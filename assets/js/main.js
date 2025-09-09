@@ -182,4 +182,40 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+
+ /**
+* Inicia o carrossel de parceiros
+*/
+new Swiper('.partners-slider', {
+  speed: 600,
+  loop: true,
+  autoplay: {
+    delay: 5000, // Tempo em milissegundos (5 segundos)
+    disableOnInteraction: false
+  },
+  slidesPerView: 'auto',
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20
+    },
+    1200: {
+      slidesPerView: 3, // Exibe 3 slides em telas grandes
+      spaceBetween: 20
+    }
+  }
+}); 
 })();
