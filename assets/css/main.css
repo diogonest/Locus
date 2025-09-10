@@ -1748,3 +1748,97 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+#send-whatsapp {
+  /* Cor de fundo */
+  background-color: #BF785E; /* Este é um tom de marrom rosado semelhante ao da imagem */
+  /* Cor do texto */
+  color: #FFFFFF; /* Branco */
+  /* Remover borda padrão */
+  border: none;
+  /* Espaçamento interno */
+  padding: 12px 30px; /* Ajuste conforme a densidade desejada */
+  /* Cantos arredondados */
+  border-radius: 30px; /* Valor alto para cantos bem arredondados (tipo pílula) */
+  /* Tamanho da fonte */
+  font-size: 16px; /* Ou ajuste conforme necessário */
+  /* Negrito da fonte */
+  font-weight: 500; /* Ou 'bold' para mais negrito, 'normal' para menos */
+  /* Cursor ao passar o mouse */
+  cursor: pointer;
+  /* Transição suave para efeitos de hover */
+  transition: background-color 0.3s ease;
+
+  /* Para garantir que o botão não se estique muito, especialmente em col-md-12 */
+  display: inline-block; /* Ou 'block' se quiser que ocupe toda a largura disponível */
+}
+
+/* Efeito ao passar o mouse (opcional, mas recomendado para feedback visual) */
+#send-whatsapp:hover {
+  background-color: #8C6A5A; /* Um tom um pouco mais escuro para o hover */
+}
+
+/* Estilo para o container da newsletter (seção do rodapé) */
+.footer-newsletter {
+  /* Fundo escuro geral, se ainda não estiver definido */
+  background-color:#733B36; /* Um marrom escuro para o fundo da seção, como na imagem */
+  padding: 30px; /* Adicione padding se necessário */
+  color: #FFFFFF; /* Texto branco para esta seção */
+  border-radius: 8px; /* Opcional: para o container da seção */
+}
+
+.footer-newsletter h4 {
+  color: #FFFFFF; /* Título em branco */
+  margin-bottom: 15px;
+}
+
+.footer-newsletter p {
+  color: #E0E0E0; /* Texto da descrição mais claro */
+  margin-bottom: 25px;
+}
+
+/* Estilos para o contêiner do input e botão */
+.footer-newsletter .newsletter-form {
+  margin-top: 30px;
+  background: #733B36; /* Fundo interno um pouco mais claro que o container principal */
+  padding: 6px 10px;
+  position: relative;
+  border-radius: 50px; /* Cantos arredondados para o contêiner total */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Uma borda sutil para o contêiner */
+  display: flex; /* Para alinhar input e botão lado a lado */
+  overflow: hidden; /* Importante para que a borda arredondada funcione bem */
+}
+
+.footer-newsletter .newsletter-form input[type="text"] {
+  border: 0; /* Remove a borda padrão do input */
+  padding: 8px 15px; /* Ajuste o padding interno do campo */
+  width: calc(100% - 120px); /* Ajusta a largura, subtraindo a largura do botão */
+  background: none; /* Remove o fundo do input para mostrar o fundo do .newsletter-form */
+  color: #FFFFFF; /* Cor do texto digitado */
+  flex-grow: 1; /* Permite que o input cresça para preencher o espaço */
+}
+
+.footer-newsletter .newsletter-form input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Cor do placeholder mais clara */
+}
+
+.footer-newsletter .newsletter-form input[type="text"]:focus {
+  outline: none; /* Remove o contorno de foco padrão */
+}
+
+.footer-newsletter .newsletter-form input[type="submit"] {
+  border: 0; /* Remove a borda padrão do botão */
+  background: #F2CBBD; /* Cor do botão, semelhante à imagem */
+  color: #FFFFFF; /* Cor do texto do botão */
+  padding: 8px 30px;
+  border-radius: 50px; /* Cantos arredondados para o botão */
+  cursor: pointer;
+  transition: 0.3s;
+  height: 50px; /* Ajuste a altura para corresponder ao padding do input */
+  min-width: 120px; /* Garante que o botão tenha uma largura mínima */
+  margin-left: -5px; /* Pequeno ajuste para sobrepor a borda do container e parecer "colado" */
+}
+
+.footer-newsletter .newsletter-form input[type="submit"]:hover {
+  background: #F2CBBD; /* Cor mais escura ao passar o mouse */
+}

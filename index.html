@@ -49,12 +49,12 @@
           <li><a href="#gallery">Galeria</a></li>
           <li><a href="#about">Sobre nós</a></li>
           <li><a href="#team">Parceiros</a></li>
-          <li class="dropdown"><a href="#"><span>Hospedagens</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <!-- <li class="dropdown"><a href="#"><span>Hospedagens</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a> 
             <ul>
               <li><a href="#">Centro de Guarapari</a></li>
               <li><a href="#">Praia do Morro</a></li>
               <li><a href="#">Enseada Azul</a></li>
-            </ul>
+            </ul>-->
           </li>
           <li><a href="#contact">Contato</a></li>
         </ul>
@@ -211,14 +211,14 @@
 
     </section><!-- /Stats Section -->
 
-    <!-- Details Section -->
+    <!-- Details Section 
     <section id="details" class="details section">
 
-      <!-- Section Title -->
+       Section Title 
       <div class="container section-title" data-aos="fade-up">
         <h2>Details</h2>
         <div><span>Check Our</span> <span class="description-title">Details</span></div>
-      </div><!-- End Section Title -->
+      </div> End Section Title 
 
       <div class="container">
 
@@ -238,7 +238,7 @@
               <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
             </ul>
           </div>
-        </div><!-- Features Item -->
+        </div> Features Item 
 
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
@@ -256,7 +256,7 @@
               culpa qui officia deserunt mollit anim id est laborum
             </p>
           </div>
-        </div><!-- Features Item -->
+        </div> Features Item 
 
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
@@ -271,7 +271,7 @@
               <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
             </ul>
           </div>
-        </div><!-- Features Item -->
+        </div> Features Item 
 
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
@@ -289,11 +289,11 @@
               culpa qui officia deserunt mollit anim id est laborum
             </p>
           </div>
-        </div><!-- Features Item -->
+        </div> Features Item 
 
       </div>
 
-    </section><!-- /Details Section -->
+    </section>/Details Section -->
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section">
@@ -625,7 +625,11 @@
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" id="contact-subject" name="subject" placeholder="Hóspede ou Anfitrião" required="">
+                  <!-- <input type="text" class="form-control" id="contact-subject" name="subject" placeholder="Hóspede ou Anfitrião" required=""> -->
+                  <select name="subject" id="contact-subject" class="form-select">
+                    <option value="Hóspede">Hóspede</option>
+                    <option value="Anfitrião">Anfitrião</option>
+                  </select>
                 </div>
 
                 <div class="col-md-12">
@@ -678,9 +682,13 @@
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Receba Novidades</h4>
           <p>Ao entrar para nosso canal de transmissão, você receberá ofertas e descontos imperdíveis em primeira mão!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Se inscreva"></div>
-            <div class="loading">Loading</div>
+          
+          <form id="newsletter-whatsapp-form" class="php-email-form">
+            <div class="newsletter-form">
+              <input type="text" name="name" id="whatsapp-name" placeholder="Seu nome" required>
+              <input type="submit" value="Entrar no Canal">
+            </div>
+            <div class="loading">Carregando</div>
             <div class="error-message"></div>
             <div class="sent-message">Sua inscrição foi feita com sucesso. Obrigado!</div>
           </form>
@@ -745,7 +753,7 @@
   
         // 4. Substitua este número pelo seu número de WhatsApp
         // Formato: DDI + DDD + Número (tudo junto, sem espaços ou símbolos)
-        const numeroWhatsapp = '5527999641146'; // <-- IMPORTANTE: COLOQUE SEU NÚMERO AQUI!
+        const numeroWhatsapp = '5527988360788'; // <-- IMPORTANTE: COLOQUE SEU NÚMERO AQUI!
   
         // 5. Criar o link final do WhatsApp
         const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`;
@@ -755,7 +763,49 @@
       });
   
     });
-  </script>
+
+  // Garante que o script rode apenas depois que a página carregar
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Seleciona o formulário pelo ID que criamos
+    const newsletterForm = document.getElementById('newsletter-whatsapp-form');
+
+    // Adiciona um "escutador" para o evento de SUBMIT do formulário
+    newsletterForm.addEventListener('submit', function(event) {
+      
+      // 1. IMPEDE o comportamento padrão do formulário (que seria recarregar a página ou enviar dados)
+      event.preventDefault();
+
+      // 2. Pega o valor digitado no campo de nome
+      const nome = document.getElementById('whatsapp-name').value;
+
+      // Validação para garantir que o campo não está vazio
+      if (!nome) {
+        alert('Por favor, digite seu nome para continuar.');
+        return; // Para a execução
+      }
+
+      // 3. Monta a mensagem que será enviada
+      const mensagemFormatada = `Olá, meu nome é ${nome}! Quero receber as novidades da Locus.`;
+
+      // 4. Codifica a mensagem para ser usada em uma URL
+      const mensagemCodificada = encodeURIComponent(mensagemFormatada);
+
+      // 5. IMPORTANTE: Substitua pelo seu número de WhatsApp
+      // Formato: DDI + DDD + Número (tudo junto)
+      const numeroWhatsapp = '5527988360788'; // <-- COLOQUE SEU NÚMERO AQUI!
+
+      // 6. Cria o link final do WhatsApp
+      const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`;
+
+      // 7. Abre o link em uma nova aba
+      window.open(linkWhatsapp, '_blank');
+
+      // Opcional: Limpa o campo após o envio
+      document.getElementById('whatsapp-name').value = '';
+    });
+  });
+</script>
 
 </body>
 
