@@ -613,36 +613,32 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Seu nome" required="">
+                  <input type="text" name="name" id="contact-name" class="form-control" placeholder="Seu nome" required="">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                  <input type="email" class="form-control" id="contact-email" name="email" placeholder="Email" required="">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Hóspede ou Anfitrião" required="">
+                  <input type="text" class="form-control" id="contact-subject" name="subject" placeholder="Hóspede ou Anfitrião" required="">
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Mensagem" required=""></textarea>
+                  <textarea class="form-control" name="message" id="contact-message" rows="6" placeholder="Mensagem" required=""></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
-
-                  <button type="submit">Enviar Mensagem</button>
+                  <button type="button" id="send-whatsapp">Enviar Mensagem via WhatsApp</button>
                 </div>
 
               </div>
             </form>
-          </div><!-- End Contact Form -->
+          </div>
         </div>
       </div>
     </section><!-- /Contact Section -->
@@ -721,6 +717,45 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    // Garante que o script só rode depois que a página carregar completamente
+    document.addEventListener('DOMContentLoaded', function() {
+  
+      // Adiciona um "escutador" de evento para o clique no botão
+      document.getElementById('send-whatsapp').addEventListener('click', function() {
+  
+        // 1. Pegar os dados dos campos do formulário
+        const nome = document.getElementById('contact-name').value;
+        const email = document.getElementById('contact-email').value;
+        const perfil = document.getElementById('contact-subject').value; // Hóspede ou Anfitrião
+        const mensagemUsuario = document.getElementById('contact-message').value;
+  
+        // Validação simples para ver se os campos não estão vazios
+        if (!nome || !email || !perfil || !mensagemUsuario) {
+          alert('Por favor, preencha todos os campos antes de enviar.');
+          return; // Para a execução da função se algo estiver faltando
+        }
+  
+        // 2. Formatar a mensagem final
+        const mensagemFormatada = `Olá! Vim do site da Locus. Me chamo ${nome}, meu email é ${email} e sou ${perfil}. ${mensagemUsuario}`;
+  
+        // 3. Codificar a mensagem para ser usada em uma URL (substitui espaços por %20, etc.)
+        const mensagemCodificada = encodeURIComponent(mensagemFormatada);
+  
+        // 4. Substitua este número pelo seu número de WhatsApp
+        // Formato: DDI + DDD + Número (tudo junto, sem espaços ou símbolos)
+        const numeroWhatsapp = '5527999641146'; // <-- IMPORTANTE: COLOQUE SEU NÚMERO AQUI!
+  
+        // 5. Criar o link final do WhatsApp
+        const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`;
+  
+        // 6. Abrir o link em uma nova aba do navegador
+        window.open(linkWhatsapp, '_blank');
+      });
+  
+    });
+  </script>
 
 </body>
 
